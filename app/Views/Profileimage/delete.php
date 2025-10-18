@@ -1,18 +1,58 @@
 <?= $this->extend('layouts/default') ?>
 
-<?= $this->section('title') ?>Delete profile image<?= $this->endSection() ?>
+<?= $this->section('title') ?>Edit password<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 
-<h1>Delete profile image</h1>
+<h1 class="title">Edit password</h1>
 
-<p>Are you sure?</p>
+<?php if (session()->has('errors')): ?>
+    <ul>
+        <?php foreach(session('errors') as $error): ?>
+            <li><?= $error ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif ?>
 
-<?= form_open("/profileimage/delete") ?>
+<div class="container">
 
-    <button>Yes</button>
-    <a href="<?= site_url("/profile/show") ?>">Cancel</a>
-    
-</form>
+    <?= form_open("/profile/updatepassword") ?>
+
+        <div class="field">
+            <label class="label" for="current_password">Current password</label>
+            <input class="input" type="password" name="current_password">
+        </div>
+        
+        <div class="field">
+            <label class="label" for="password">New password</label>
+            <input class="input" type="password" name="password">
+        </div>
+        
+        <div class="field">
+            <label class="label" for="password_confirmation">Repeat new password</label>
+            <input class="input" type="password" name="password_confirmation">
+        </div>
+        
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-primary">Save</button>
+            </div>
+
+            <div class="control">
+                <a class="button" href="<?= site_url("/profile/show") ?>">Cancel</a>
+            </div>
+        </div>
+
+    </form>
+
+</div>
 
 <?= $this->endSection() ?>
+
+
+
+
+
+
+
+
